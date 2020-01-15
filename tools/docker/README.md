@@ -1,5 +1,8 @@
 # Using docker-compose for local development
+
 The docker-compose configuration present in this directory allows for a user to quickly setup all of chainlink's services to perform actions like integration tests, acceptance tests, and development across multiple services.
+
+Docker and this tool set are not required to develop on Chainlink, however they will greatly assist in setting up supporting environment.
 
 # Requirements
 - [docker-compose](https://docs.docker.com/compose/install/)
