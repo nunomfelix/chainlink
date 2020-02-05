@@ -35,8 +35,6 @@ flux_monitor_test() {
     --data '{"result":101}' \
     "$EXTERNAL_ADAPTER_URL/result"
 
-  sleep 5
-
   # Assert no jobs ran after nominal update
   assert "Flux Monitor Runs count" "chainlink -j runs list | jq length" $first_job_run_count
 
@@ -46,8 +44,6 @@ flux_monitor_test() {
     --request PATCH \
     --data '{"result":110}' \
     "$EXTERNAL_ADAPTER_URL/result"
-
-  sleep 5
 
   # Assert job ran
   assert "Flux Monitor Runs count" "chainlink -j runs list | jq length" $second_job_run_count
