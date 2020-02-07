@@ -9,9 +9,9 @@
     "node": "~10.16"
   },
   "scripts": {
-    "build": "tsc",
     "start": "node .",
-    "setup": "echo \"No setup required for @chainlink/echo-server\""
+    "setup": "tsc -b",
+    "clean": "tsc -b --clean"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",

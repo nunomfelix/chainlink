@@ -6,9 +6,9 @@
   "repository": "https://github.com/smartcontractkit/chainlink",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
     "start": "node .",
-    "setup": "echo \"No setup required for @chainlink/external-adapter\""
+    "setup": "tsc -b",
+    "clean": "tsc -b --clean"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",

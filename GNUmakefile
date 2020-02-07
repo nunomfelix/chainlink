@@ -48,26 +48,21 @@ gomod: ## Ensure chainlink's go dependencies are installed.
 	go mod download
 
 .PHONY: yarndep
-yarndep: ## Ensure the frontend's dependencies are installed.
+yarndep: ## Ensure all yarn dependencies are installed
 	yarn install --frozen-lockfile
+	yarn setup
 
 .PHONY: install-chainlink
 install-chainlink: chainlink ## Install the chainlink binary.
 	cp $< $(GOBIN)/chainlink
 
-chainlink: $(SGX_BUILD_ENCLAVE) operator-ui contracts ## Build the chainlink binary.
+chainlink: $(SGX_BUILD_ENCLAVE) operator-ui ## Build the chainlink binary.
 	CGO_ENABLED=0 go run packr/main.go "${CURDIR}/core/eth" ## embed contracts in .go file
 	go build $(GOFLAGS) -o $@ ./core/
 
-.PHONY: contracts 
-contracts: # build the required evm contracts
-	yarn workspace @chainlink/test-helpers setup
-	yarn workspace @chainlink/linkbelt setup
-	yarn workspace @chainlink/contracts setup
-
 .PHONY: operator-ui
 operator-ui: ## Build the static frontend UI.
-	CHAINLINK_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @chainlink/operator-ui run build
+	CHAINLINK_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @chainlink/operator-ui build
 	CGO_ENABLED=0 go run packr/main.go "${CURDIR}/core/services"
 
 .PHONY: docker

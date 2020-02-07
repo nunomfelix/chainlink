@@ -7,8 +7,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 ADD . .
 
 RUN yarn install
-RUN yarn workspace @chainlink/explorer-client run setup:dependencies
-RUN yarn workspace @chainlink/explorer run build
+RUN yarn setup
 
 FROM node:10.16.3-alpine
 

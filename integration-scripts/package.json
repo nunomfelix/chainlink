@@ -11,9 +11,8 @@
   },
   "scripts": {
     "generate-typings": "typechain --target ethers --outDir src/generated \"dist/artifacts/*\"",
-    "postgenerate-typings": "yarn workspace @chainlink/test-helpers export-typings ../integration-scripts/src/generated ../integration-scripts/dist/src/generated",
-    "build": "sol-compiler && yarn generate-typings && tsc",
-    "setup": "yarn build",
+    "setup": "sol-compiler && yarn generate-typings && tsc -b",
+    "clean": "tsc -b --clean && rimraf -rf src/generated",
     "count-transaction-events": "node ./dist/countTransactionEvents",
     "send-runlog-transaction": "node ./dist/sendRunlogTransaction",
     "send-ethlog-transaction": "node ./dist/sendEthlogTransaction",

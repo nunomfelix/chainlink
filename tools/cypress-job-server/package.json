@@ -9,9 +9,9 @@
     "node": "~10.16"
   },
   "scripts": {
-    "build": "tsc",
     "start": "node .",
-    "setup": "echo \"No setup required for @chainlink/cypress-job-server\""
+    "setup": "tsc -b",
+    "clean": "tsc -b --clean"
   },
   "devDependencies": {
     "@types/node": "^12.12.20",
